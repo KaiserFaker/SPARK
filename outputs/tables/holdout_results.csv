@@ -1,0 +1,5 @@
+approach,recall_high,precision_high,f1_macro,accuracy,high_predicted_low
+Decision Tree,0.962,0.862,0.825,0.835,0
+Random Forest,0.923,0.857,0.815,0.823,0
+KNN,0.885,0.958,0.837,0.848,0
+G2 carried forward,0.962,0.862,0.825,0.835,0

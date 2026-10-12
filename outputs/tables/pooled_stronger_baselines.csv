@@ -1,0 +1,13 @@
+approach,subject,avg_precision,precision_at_90_recall
+"Rule, G2 only",All,0.877,0.741
+"Rule, G2 only",Mathematics,0.933,0.845
+"Rule, G2 only",Portuguese,0.799,0.436
+Average of G1 and G2,All,0.879,0.672
+Average of G1 and G2,Mathematics,0.918,0.762
+Average of G1 and G2,Portuguese,0.834,0.583
+"Logistic, G2 and subject",All,0.909,0.741
+"Logistic, G2 and subject",Mathematics,0.943,0.845
+"Logistic, G2 and subject",Portuguese,0.818,0.564
+"Logistic, full Stage 2",All,0.92,0.769
+"Logistic, full Stage 2",Mathematics,0.949,0.853
+"Logistic, full Stage 2",Portuguese,0.872,0.66

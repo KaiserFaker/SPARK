@@ -1,0 +1,3 @@
+baseline,recall_high,recall_macro,f1_macro,accuracy
+G2 carried forward,0.938,0.882,0.884,0.878
+G1 carried forward,0.8,0.744,0.743,0.734

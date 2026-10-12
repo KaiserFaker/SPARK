@@ -1,0 +1,9 @@
+dataset,model,balancing,recall_high,recall_high_sd,recall_macro,f1_macro,accuracy
+main,Random Forest,class_weight,0.884,0.052,0.876,0.874,0.865
+main,Random Forest,smote,0.862,0.068,0.876,0.876,0.867
+main,Random Forest,none,0.856,0.053,0.876,0.877,0.868
+main,Decision Tree,smote,0.782,0.079,0.815,0.814,0.804
+main,Decision Tree,none,0.776,0.074,0.803,0.801,0.79
+main,Decision Tree,class_weight,0.763,0.075,0.798,0.8,0.789
+main,KNN,smote,0.677,0.108,0.717,0.699,0.689
+main,KNN,none,0.616,0.101,0.729,0.73,0.72

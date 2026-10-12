@@ -1,0 +1,9 @@
+test set,approach,recall_high,precision_high,f1_macro,accuracy,high_predicted_low
+"Portuguese, full",Decision Tree,0.89,0.614,0.808,0.823,0
+"Portuguese, full",Random Forest,0.88,0.662,0.822,0.837,0
+"Portuguese, full",KNN,0.82,0.621,0.802,0.821,0
+"Portuguese, full",G2 carried forward,0.89,0.614,0.808,0.823,0
+"Portuguese, no overlap",Decision Tree,0.9,0.67,0.797,0.793,0
+"Portuguese, no overlap",Random Forest,0.9,0.708,0.812,0.811,0
+"Portuguese, no overlap",KNN,0.829,0.674,0.788,0.785,0
+"Portuguese, no overlap",G2 carried forward,0.9,0.67,0.797,0.793,0

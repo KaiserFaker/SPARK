@@ -1,0 +1,31 @@
+stage,model,subject,avg_precision,precision_at_90_recall
+"Stage 1, G1 only",Logistic regression,All,0.777,0.622
+"Stage 1, G1 only",Logistic regression,Mathematics,0.824,0.666
+"Stage 1, G1 only",Logistic regression,Portuguese,0.716,0.462
+"Stage 1, G1 only",Random Forest,All,0.77,0.619
+"Stage 1, G1 only",Random Forest,Mathematics,0.799,0.655
+"Stage 1, G1 only",Random Forest,Portuguese,0.689,0.456
+"Stage 1, G1 only",Gradient boosting,All,0.768,0.619
+"Stage 1, G1 only",Gradient boosting,Mathematics,0.796,0.655
+"Stage 1, G1 only",Gradient boosting,Portuguese,0.679,0.448
+"Stage 1, G1 only",Decision Tree,All,0.743,0.612
+"Stage 1, G1 only",Decision Tree,Mathematics,0.761,0.641
+"Stage 1, G1 only",Decision Tree,Portuguese,0.711,0.45
+"Stage 1, G1 only",KNN,All,0.763,0.619
+"Stage 1, G1 only",KNN,Mathematics,0.794,0.654
+"Stage 1, G1 only",KNN,Portuguese,0.704,0.439
+"Stage 2, G1 and G2",Logistic regression,All,0.92,0.769
+"Stage 2, G1 and G2",Logistic regression,Mathematics,0.949,0.853
+"Stage 2, G1 and G2",Logistic regression,Portuguese,0.872,0.66
+"Stage 2, G1 and G2",Random Forest,All,0.904,0.748
+"Stage 2, G1 and G2",Random Forest,Mathematics,0.94,0.89
+"Stage 2, G1 and G2",Random Forest,Portuguese,0.842,0.625
+"Stage 2, G1 and G2",Gradient boosting,All,0.914,0.745
+"Stage 2, G1 and G2",Gradient boosting,Mathematics,0.947,0.852
+"Stage 2, G1 and G2",Gradient boosting,Portuguese,0.855,0.671
+"Stage 2, G1 and G2",Decision Tree,All,0.863,0.735
+"Stage 2, G1 and G2",Decision Tree,Mathematics,0.908,0.831
+"Stage 2, G1 and G2",Decision Tree,Portuguese,0.792,0.612
+"Stage 2, G1 and G2",KNN,All,0.891,0.699
+"Stage 2, G1 and G2",KNN,Mathematics,0.929,0.774
+"Stage 2, G1 and G2",KNN,Portuguese,0.833,0.597

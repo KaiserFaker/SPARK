@@ -1,0 +1,4 @@
+model,best_params,recall_high,precision_high,f1_macro
+Decision Tree,"{'max_depth': 2, 'min_samples_leaf': 1}",0.932,0.831,0.896
+Random Forest,"{'max_depth': 5, 'min_samples_leaf': 1, 'n_estimators': 200}",0.917,0.833,0.883
+KNN,"{'n_neighbors': 21, 'weights': 'uniform'}",0.881,0.812,0.858

@@ -1,0 +1,5 @@
+feature_set,recall_high,recall_high_sd,recall_macro,f1_macro,accuracy
+"G1, G2 and all others",0.884,0.052,0.876,0.874,0.865
+"G1 and all others, no G2",0.737,0.076,0.734,0.73,0.719
+G1 and G2 only,0.885,0.083,0.874,0.872,0.865
+No grades,0.478,0.072,0.488,0.485,0.488
