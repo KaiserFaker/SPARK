@@ -1,0 +1,21 @@
+test set,approach,stage,recall_high,precision_high,f1_macro,accuracy,flagged_high,high_predicted_low,n,high_students
+"Portuguese, no overlap","Rule, G2 carried forward",stage2,0.9,0.67,0.797,0.793,94,0,275,70
+"Portuguese, no overlap","Rule, G1 carried forward",stage1,0.9,0.6,0.69,0.695,105,0,275,70
+"Portuguese, no overlap",Decision Tree,stage1,1.0,0.467,0.597,0.582,150,0,275,70
+"Portuguese, no overlap",Decision Tree,stage2,0.9,0.67,0.797,0.793,94,0,275,70
+"Portuguese, no overlap",Random Forest,stage1,1.0,0.467,0.597,0.582,150,0,275,70
+"Portuguese, no overlap",Random Forest,stage2,0.829,0.674,0.788,0.785,86,0,275,70
+"Portuguese, no overlap",KNN,stage1,0.9,0.6,0.69,0.695,105,0,275,70
+"Portuguese, no overlap",KNN,stage2,0.9,0.708,0.808,0.807,89,0,275,70
+"Portuguese, no overlap",Logistic regression,stage1,0.9,0.6,0.717,0.709,105,0,275,70
+"Portuguese, no overlap",Logistic regression,stage2,0.9,0.708,0.81,0.807,89,0,275,70
+"Portuguese, full file","Rule, G2 carried forward",stage2,0.89,0.614,0.808,0.823,145,0,649,100
+"Portuguese, full file","Rule, G1 carried forward",stage1,0.88,0.561,0.741,0.752,157,0,649,100
+"Portuguese, full file",Decision Tree,stage1,0.98,0.389,0.647,0.641,252,0,649,100
+"Portuguese, full file",Decision Tree,stage2,0.89,0.614,0.808,0.823,145,0,649,100
+"Portuguese, full file",Random Forest,stage1,0.98,0.389,0.647,0.641,252,0,649,100
+"Portuguese, full file",Random Forest,stage2,0.82,0.626,0.803,0.821,131,0,649,100
+"Portuguese, full file",KNN,stage1,0.88,0.561,0.741,0.752,157,0,649,100
+"Portuguese, full file",KNN,stage2,0.88,0.657,0.821,0.835,134,0,649,100
+"Portuguese, full file",Logistic regression,stage1,0.88,0.561,0.726,0.73,157,0,649,100
+"Portuguese, full file",Logistic regression,stage2,0.88,0.662,0.819,0.832,133,0,649,100

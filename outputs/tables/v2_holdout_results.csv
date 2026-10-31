@@ -1,0 +1,11 @@
+test set,approach,stage,recall_high,precision_high,f1_macro,accuracy,flagged_high,high_predicted_low,n,high_students
+Mathematics hold out,"Rule, G2 carried forward",stage2,0.923,0.8,0.869,0.861,30,0,79,26
+Mathematics hold out,"Rule, G1 carried forward",stage1,0.808,0.75,0.754,0.747,28,0,79,26
+Mathematics hold out,Decision Tree,stage1,0.923,0.632,0.705,0.696,38,0,79,26
+Mathematics hold out,Decision Tree,stage2,0.923,0.8,0.869,0.861,30,0,79,26
+Mathematics hold out,Random Forest,stage1,0.923,0.632,0.705,0.696,38,0,79,26
+Mathematics hold out,Random Forest,stage2,0.923,0.828,0.866,0.861,29,0,79,26
+Mathematics hold out,KNN,stage1,0.808,0.75,0.754,0.747,28,0,79,26
+Mathematics hold out,KNN,stage2,0.885,0.852,0.853,0.848,27,0,79,26
+Mathematics hold out,Logistic regression,stage1,0.808,0.75,0.754,0.747,28,0,79,26
+Mathematics hold out,Logistic regression,stage2,0.885,0.852,0.866,0.861,27,0,79,26
