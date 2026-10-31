@@ -1,0 +1,9 @@
+stage,model,tuning_avg_precision,best_params
+stage1,Decision Tree,0.809,"{'clf__max_depth': 5, 'clf__min_samples_leaf': 3}"
+stage1,Random Forest,0.81,"{'clf__max_depth': 3, 'clf__min_samples_leaf': 1}"
+stage1,KNN,0.809,"{'clf__n_neighbors': 35, 'clf__weights': 'distance'}"
+stage1,Logistic regression,0.817,{'clf__C': 0.1}
+stage2,Decision Tree,0.933,"{'clf__max_depth': 6, 'clf__min_samples_leaf': 10}"
+stage2,Random Forest,0.948,"{'clf__max_depth': 5, 'clf__min_samples_leaf': 1}"
+stage2,KNN,0.94,"{'clf__n_neighbors': 35, 'clf__weights': 'uniform'}"
+stage2,Logistic regression,0.944,{'clf__C': 3}

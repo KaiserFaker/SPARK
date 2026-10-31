@@ -1,0 +1,39 @@
+{
+  "best_params": {
+    "stage1": {
+      "Decision Tree": {
+        "clf__max_depth": 5,
+        "clf__min_samples_leaf": 3
+      },
+      "Random Forest": {
+        "clf__max_depth": 3,
+        "clf__min_samples_leaf": 1
+      },
+      "KNN": {
+        "clf__n_neighbors": 35,
+        "clf__weights": "distance"
+      },
+      "Logistic regression": {
+        "clf__C": 0.1
+      }
+    },
+    "stage2": {
+      "Decision Tree": {
+        "clf__max_depth": 6,
+        "clf__min_samples_leaf": 10
+      },
+      "Random Forest": {
+        "clf__max_depth": 5,
+        "clf__min_samples_leaf": 1
+      },
+      "KNN": {
+        "clf__n_neighbors": 35,
+        "clf__weights": "uniform"
+      },
+      "Logistic regression": {
+        "clf__C": 3
+      }
+    }
+  },
+  "main_model": "Random Forest"
+}
