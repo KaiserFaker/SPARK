@@ -1,0 +1,24 @@
+{
+  "stage1": {
+    "SVM": {
+      "clf__C": 0.1,
+      "clf__gamma": 0.01
+    },
+    "XGBoost": {
+      "clf__estimator__learning_rate": 0.03,
+      "clf__estimator__max_depth": 3,
+      "clf__estimator__n_estimators": 200
+    }
+  },
+  "stage2": {
+    "SVM": {
+      "clf__C": 100,
+      "clf__gamma": 0.01
+    },
+    "XGBoost": {
+      "clf__estimator__learning_rate": 0.1,
+      "clf__estimator__max_depth": 4,
+      "clf__estimator__n_estimators": 200
+    }
+  }
+}

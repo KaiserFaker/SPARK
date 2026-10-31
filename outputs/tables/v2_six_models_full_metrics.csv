@@ -1,0 +1,25 @@
+test set,model,stage,recall_high,precision_high,high_predicted_low,accuracy,precision_macro,recall_macro,f1_macro,roc_auc_ovr
+Mathematics hold out,Decision Tree,stage1,0.923,0.632,0,0.696,0.729,0.713,0.705,0.89
+Mathematics hold out,Decision Tree,stage2,0.923,0.8,0,0.861,0.871,0.87,0.869,0.959
+Mathematics hold out,Random Forest,stage1,0.923,0.632,0,0.696,0.729,0.713,0.705,0.894
+Mathematics hold out,Random Forest,stage2,0.923,0.828,0,0.861,0.865,0.87,0.866,0.962
+Mathematics hold out,KNN,stage1,0.808,0.75,0,0.747,0.77,0.745,0.754,0.889
+Mathematics hold out,KNN,stage2,0.885,0.852,0,0.848,0.855,0.851,0.853,0.964
+Mathematics hold out,Logistic regression,stage1,0.808,0.75,0,0.747,0.747,0.771,0.754,0.898
+Mathematics hold out,Logistic regression,stage2,0.885,0.852,0,0.861,0.865,0.868,0.866,0.966
+Mathematics hold out,SVM,stage1,0.923,0.632,0,0.544,0.365,0.5,0.421,0.684
+Mathematics hold out,SVM,stage2,0.923,0.8,0,0.861,0.871,0.87,0.869,0.962
+Mathematics hold out,XGBoost,stage1,0.923,0.632,0,0.696,0.729,0.713,0.705,0.89
+Mathematics hold out,XGBoost,stage2,0.923,0.8,0,0.861,0.871,0.87,0.869,0.967
+"Portuguese, no overlap",Decision Tree,stage1,1.0,0.467,0,0.582,0.663,0.643,0.597,0.859
+"Portuguese, no overlap",Decision Tree,stage2,0.9,0.67,0,0.793,0.816,0.8,0.797,0.92
+"Portuguese, no overlap",Random Forest,stage1,1.0,0.467,0,0.582,0.663,0.643,0.597,0.881
+"Portuguese, no overlap",Random Forest,stage2,0.829,0.674,0,0.785,0.809,0.783,0.788,0.93
+"Portuguese, no overlap",KNN,stage1,0.9,0.6,0,0.695,0.73,0.699,0.69,0.858
+"Portuguese, no overlap",KNN,stage2,0.9,0.708,0,0.807,0.828,0.807,0.808,0.937
+"Portuguese, no overlap",Logistic regression,stage1,0.9,0.6,0,0.709,0.718,0.743,0.717,0.886
+"Portuguese, no overlap",Logistic regression,stage2,0.9,0.708,0,0.807,0.816,0.815,0.81,0.95
+"Portuguese, no overlap",SVM,stage1,1.0,0.467,0,0.476,0.318,0.478,0.365,0.696
+"Portuguese, no overlap",SVM,stage2,0.9,0.67,0,0.793,0.816,0.8,0.797,0.942
+"Portuguese, no overlap",XGBoost,stage1,1.0,0.467,0,0.582,0.663,0.643,0.597,0.858
+"Portuguese, no overlap",XGBoost,stage2,0.857,0.6,0,0.749,0.782,0.765,0.76,0.932

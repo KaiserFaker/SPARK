@@ -14,6 +14,11 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.metrics import roc_auc_score
+from sklearn.preprocessing import LabelEncoder
+from sklearn.svm import SVC
+from xgboost import XGBClassifier
 
 # ===== Settings =====
 RANDOM_STATE = 2026
@@ -80,9 +85,45 @@ TUNING_GRIDS = {
     "Logistic regression": {"clf__C": [0.1, 0.3, 1, 3, 10, 30, 100]},
 }
 
+# ===== Additional baseline models, added after the first hold out look =====
+class EncodedLabelClassifier(ClassifierMixin, BaseEstimator):
+    """Lets estimators that need integer labels, such as XGBoost, accept text labels."""
+
+    def __init__(self, estimator=None):
+        self.estimator = estimator
+
+    def fit(self, X, y):
+        self.encoder_ = LabelEncoder().fit(y)
+        self.estimator_ = clone(self.estimator).fit(X, self.encoder_.transform(y))
+        self.classes_ = self.encoder_.classes_
+        return self
+
+    def predict_proba(self, X):
+        return self.estimator_.predict_proba(X)
+
+    def predict(self, X):
+        return self.encoder_.inverse_transform(self.estimator_.predict(X))
+
+
+EXTRA_MODEL_TEMPLATES = {
+    "SVM": SVC(kernel="rbf", probability=True, class_weight="balanced",
+               random_state=RANDOM_STATE),
+    "XGBoost": EncodedLabelClassifier(XGBClassifier(
+        n_estimators=200, learning_rate=0.05, max_depth=3,
+        eval_metric="mlogloss", random_state=RANDOM_STATE, n_jobs=1)),
+}
+
+EXTRA_TUNING_GRIDS = {
+    "SVM": {"clf__C": [0.1, 1, 10, 100], "clf__gamma": ["scale", 0.01, 0.1, 1]},
+    "XGBoost": {"clf__estimator__max_depth": [2, 3, 4],
+                "clf__estimator__n_estimators": [100, 200],
+                "clf__estimator__learning_rate": [0.03, 0.1]},
+}
+
+ALL_TEMPLATES = {**MODEL_TEMPLATES, **EXTRA_MODEL_TEMPLATES}
 
 def make_pipeline(name, **params):
-    pipe = Pipeline([("scale", StandardScaler()), ("clf", clone(MODEL_TEMPLATES[name]))])
+    pipe = Pipeline([("scale", StandardScaler()), ("clf", clone(ALL_TEMPLATES[name]))])
     return pipe.set_params(**params) if params else pipe
 
 
@@ -200,3 +241,24 @@ def precision_at_recall(is_high, p_high, target=0.90):
     """Best precision reachable while keeping recall for High at or above the target."""
     precision, recall, _ = precision_recall_curve(is_high, p_high)
     return float(precision[recall >= target].max())
+
+def stage_probabilities(bundle, data, stage):
+    """Unrounded class probabilities with columns in alphabetical class order."""
+    model = bundle["models"][stage]
+    proba = model.predict_proba(data[bundle["cols"][stage]])
+    order = [list(model.classes_).index(c) for c in sorted(RISK_ORDER)]
+    return proba[:, order]
+
+
+def full_metrics(y_true, y_pred, proba):
+    y_true, y_pred = np.asarray(y_true), np.asarray(y_pred)
+    return {
+        "recall_high": recall_score(y_true, y_pred, labels=["High"], average="macro", zero_division=0),
+        "precision_high": precision_score(y_true, y_pred, labels=["High"], average="macro", zero_division=0),
+        "high_predicted_low": int(((y_true == "High") & (y_pred == "Low")).sum()),
+        "accuracy": accuracy_score(y_true, y_pred),
+        "precision_macro": precision_score(y_true, y_pred, labels=RISK_ORDER, average="macro", zero_division=0),
+        "recall_macro": recall_score(y_true, y_pred, labels=RISK_ORDER, average="macro", zero_division=0),
+        "f1_macro": f1_score(y_true, y_pred, labels=RISK_ORDER, average="macro", zero_division=0),
+        "roc_auc_ovr": roc_auc_score(y_true, proba, multi_class="ovr", labels=sorted(RISK_ORDER)),
+    }
