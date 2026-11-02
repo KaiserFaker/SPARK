@@ -98,7 +98,11 @@ def cohort_tab(bundle):
         st.caption("Demo only. These students were not used to train the model, and their final "
                    "grades are included so the predictions can be checked.")
 
-    data = raw.rename(columns={"risk": "actual_risk"}).reset_index(drop=True)
+    output_cols = ["stage", "p_high", "p_medium", "p_low", "predicted_risk",
+                   "borderline", "_latest"]
+    data = (raw.rename(columns={"risk": "actual_risk"})
+               .drop(columns=output_cols, errors="ignore")
+               .reset_index(drop=True))
 
     try:
         scored = score_students(data, bundle)
