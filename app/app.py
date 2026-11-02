@@ -48,6 +48,46 @@ def show_risk(risk):
     else:
         st.success("Low risk")
 
+# ===== Suggestions for lecturers =====
+SHORT_ACTIONS = {
+    "High": "Meet within two weeks and agree a catch up plan",
+    "Medium": "Check in and share revision guidance",
+    "Low": "No action needed",
+}
+
+
+def suggest_actions(risk, stage, g1, g2, borderline):
+    """Rule based guidance using only the risk label, the stage and the grades."""
+    if risk == "Low":
+        return []
+
+    steps = []
+    if risk == "High":
+        steps.append("Arrange a one to one meeting within the next two weeks to talk about the "
+                     "result and what is getting in the way.")
+        steps.append("Review the topics where marks were lost and agree a short catch up plan "
+                     "with clear weekly targets.")
+        steps.append("Point the student to tutoring, peer study groups or academic advising.")
+        if stage == "stage1":
+            steps.append("Only the first grade is available, so confirm the concern with the "
+                         "next assessment before deciding on stronger action.")
+    else:
+        steps.append("Check in briefly with the student and go through the most recent assessment.")
+        steps.append("Share revision guidance for the next assessment and invite the student "
+                     "to consultation hours.")
+
+    if pd.notna(g2):
+        change = g2 - g1
+        if change <= -2:
+            steps.append("The grade fell between G1 and G2, so ask what changed in that period, "
+                         "such as workload, attendance or understanding.")
+        elif change >= 2:
+            steps.append("The grade improved between G1 and G2, so recognise the progress and "
+                         "keep the current support going.")
+    if borderline:
+        steps.append("The grade is next to a band boundary, so a small gain could change the "
+                     "outcome and a short push may help.")
+    return steps
 
 # ===== Tab 1, single student =====
 def single_tab(bundle):
@@ -79,6 +119,16 @@ def single_tab(bundle):
         st.write(f"A simple rule that applies the bands to the latest grade gives: {assign_risk(latest)}.")
         if latest in BORDERLINE_GRADES:
             st.info("This grade sits next to a band boundary, so treat the label as uncertain.")
+        steps = suggest_actions(result["risk"], stage, g1, g2 if has_g2 else np.nan,
+                                latest in BORDERLINE_GRADES)
+        if steps:
+            st.subheader("Suggested actions")
+            st.markdown("\n".join("- " + step for step in steps))
+            st.caption("General guidance based on the risk label and the grades, not a finding "
+                       "of the model and not tested for effectiveness. Use your own judgement "
+                       "and talk to the student.")
+        else:
+            st.caption("No action suggested for Low risk students.")
 
 
 # ===== Tab 2, cohort =====
@@ -99,7 +149,7 @@ def cohort_tab(bundle):
                    "grades are included so the predictions can be checked.")
 
     output_cols = ["stage", "p_high", "p_medium", "p_low", "predicted_risk",
-                   "borderline", "_latest"]
+                   "borderline", "_latest", "suggested_action"]
     data = (raw.rename(columns={"risk": "actual_risk"})
                .drop(columns=output_cols, errors="ignore")
                .reset_index(drop=True))
@@ -125,6 +175,7 @@ def cohort_tab(bundle):
         result["actual_risk"] = result["G3"].apply(assign_risk)
 
     result["borderline"] = np.where(latest.isin(BORDERLINE_GRADES), "Yes", "No")
+    result["suggested_action"] = result["predicted_risk"].map(SHORT_ACTIONS)
     result["_latest"] = latest
 
     # Filters
@@ -165,6 +216,40 @@ def cohort_tab(bundle):
                        ranked[show_cols].to_csv(index=False).encode("utf-8"),
                        file_name="spark_scored_students.csv", mime="text/csv")
 
+    # Suggestions for one student chosen from the filtered table
+    st.subheader("Suggestions for one student")
+
+    def describe(i):
+        row = ranked.loc[i]
+        g2_text = "none" if pd.isna(row.get("G2", np.nan)) else int(row["G2"])
+        return f"Row {i}, G1 {int(row['G1'])}, G2 {g2_text}, {row['predicted_risk']}"
+
+    if ranked.empty:
+        st.write("No students match the current filters.")
+    else:
+        pick = st.selectbox("Choose a student from the table above", ranked.index,
+                            format_func=describe)
+        chosen = ranked.loc[pick]
+        chosen_g2 = chosen["G2"] if "G2" in ranked.columns else np.nan
+
+        left, right = st.columns([1, 2])
+        with left:
+            show_risk(chosen["predicted_risk"])
+            st.write("Stage used: " + ("Stage 2, G1 and G2" if chosen["stage"] == "stage2"
+                                       else "Stage 1, G1 only"))
+            st.write(f"Probability of High: {chosen['p_high']:.3f}")
+            if chosen["borderline"] == "Yes":
+                st.info("Borderline grade, treat the label as uncertain.")
+        with right:
+            steps = suggest_actions(chosen["predicted_risk"], chosen["stage"],
+                                    chosen["G1"], chosen_g2, chosen["borderline"] == "Yes")
+            if steps:
+                st.markdown("\n".join("- " + step for step in steps))
+                st.caption("General guidance based on the risk label and the grades, not a "
+                           "finding of the model and not tested for effectiveness.")
+            else:
+                st.write("No action suggested for Low risk students.")
+    
     # Check against final grades, only possible when G3 is in the file
     if "G3" in result.columns:
         with st.expander("Check against final grades, all students in the file"):
