@@ -1,0 +1,4 @@
+dataset,students,mean_G3_minus_G2,students_with_G2_8_or_9,of_which_reaching_10_or_more,share_reaching_10_or_more
+"Mathematics, all",395,-0.299,82,24,0.293
+"Portuguese, full file",649,0.336,112,56,0.5
+"Portuguese, no overlap",275,0.411,66,31,0.47

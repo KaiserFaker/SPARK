@@ -1,0 +1,15 @@
+stage,model,avg_precision,avg_precision_sd,precision_at_90_recall
+stage1,Decision Tree,0.798,0.006,0.659
+stage1,Random Forest,0.793,0.005,0.66
+stage1,KNN,0.797,0.007,0.659
+stage1,Logistic regression,0.823,0.004,0.668
+stage1,SVM,0.715,0.028,0.461
+stage1,XGBoost,0.797,0.001,0.659
+stage2,Decision Tree,0.935,0.009,0.847
+stage2,Random Forest,0.949,0.003,0.852
+stage2,KNN,0.939,0.002,0.834
+stage2,Logistic regression,0.946,0.0,0.846
+stage2,SVM,0.944,0.002,0.855
+stage2,XGBoost,0.949,0.002,0.854
+stage1,"Rule, G1 carried forward",0.81,0.0,0.652
+stage2,"Rule, G2 carried forward",0.929,0.0,0.845

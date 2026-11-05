@@ -1,0 +1,13 @@
+stage,model,median_gap,ci_low,ci_high
+stage1,Decision Tree,-0.02,-0.05,0.011
+stage1,Random Forest,-0.025,-0.054,-0.0
+stage1,KNN,-0.018,-0.05,0.009
+stage1,Logistic regression,0.008,-0.008,0.022
+stage1,SVM,-0.056,-0.11,-0.005
+stage1,XGBoost,-0.03,-0.062,-0.001
+stage2,Decision Tree,0.012,0.002,0.024
+stage2,Random Forest,0.02,0.006,0.037
+stage2,KNN,0.014,0.004,0.027
+stage2,Logistic regression,0.016,0.007,0.028
+stage2,SVM,0.011,0.003,0.02
+stage2,XGBoost,0.019,0.005,0.035
